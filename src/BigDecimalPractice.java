@@ -12,26 +12,33 @@ class BigDecimalPractice{
                 s[i]=sc.next();
             }
             sc.close();
-
             //Write your code here
-            for(int b=0;b>-1;b++){
+            int j = 0;
+            for(int b=1;b>-1;b++){
+                BigDecimal bd = new BigDecimal(s[b]);
+                String strBd = s[b];
+                BigDecimal smallerInt = new BigDecimal(s[b+1]);
+                String strSmallerInt = s[b+1];
+                BigDecimal biggerInt = new BigDecimal(s[b-1]);
+                String strBiggerInt = s[b-1];
 
-                BigDecimal biggestInt = new BigDecimal(s[b]);
-                BigDecimal bd = new BigDecimal(s[b+1]);
-                if(bd.compareTo(biggestInt)==1){
-                    s[b]=bd.toString();
-                    s[b+1]=biggestInt.toString();
-                    System.out.println("\n----------------------------\nOutput number: " + b + "\n");
-                    for(int i=0;i<n;i++)
-                    {
-                        System.out.println(s[i]);
+                if(smallerInt.compareTo(bd)==1) {
+                    s[b] = strSmallerInt;
+                    s[b + 1] = strBd;
+                    j--;
+                }else if(biggerInt.compareTo(bd)==-1){
+                    s[b] = strBiggerInt;
+                    s[b - 1] = strBd;
+                    j--;
+                }else {
+                    j++;
+                    if(j==n){
+                        break;
                     }
-
                 }
                 if(b==n-2){
                     b = 0;
                 }
-
             }
             //Output
             for(int i=0;i<n;i++)
@@ -39,6 +46,5 @@ class BigDecimalPractice{
                 System.out.println(s[i]);
             }
         }
-
     }
 
